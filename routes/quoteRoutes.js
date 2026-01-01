@@ -5,17 +5,19 @@ const {
   likeQuote,
   downloadQuote,
   shareQuote,
- getQuotesPaginated
+ getQuotesPaginated,
+ getQuoteById 
 
 }  = require("../controllers/quoteController.js");
-const verifyAdmin = require("../middleware/authMiddleware.js");
+
 
 const router = express.Router();
 
 // Public Routes
 router.get("/", getAllQuotes);
 router.get("/category/:category", getQuotesByCategory);
- router.get("/paginated", getQuotesPaginated);
+router.get("/paginated", getQuotesPaginated);
+router.get("/:id", getQuoteById);
 // Actions
 router.put("/like/:id", likeQuote);
 router.put("/download/:id", downloadQuote);

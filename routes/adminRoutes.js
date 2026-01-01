@@ -8,7 +8,6 @@ const {
   deleteQuote,
 } = require("../controllers/adminController");
 const verifyAdmin = require("../middleware/authMiddleware");
-
 router.post("/login", loginAdmin);
 router.post("/logout", verifyAdmin, logoutAdmin);
 router.get("/quotes", verifyAdmin, getAllQuotesAdmin);

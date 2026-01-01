@@ -11,6 +11,7 @@ const connectDB  = require('./config/connectDB');
 const quoteRoutes = require("./routes/quoteRoutes.js");
 const uploadRoutes = require("./routes/uploadRoutes.js");
 const downloadRoutes =require( "./routes/downloadRoutes.js");
+const shareRoutes = require("./routes/share.js") ;
 var app = express();
 
  const apiLimiter = rateLimit({
@@ -40,5 +41,5 @@ app.use("/api/quotes", quoteRoutes);
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/upload", uploadRoutes);
 app.use("/api", downloadRoutes);
-
+app.use(shareRoutes);
 module.exports = app;

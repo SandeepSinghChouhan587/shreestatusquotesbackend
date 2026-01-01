@@ -6,7 +6,6 @@ const Quote = require( "../models/Quote.js");
     const quotes = await Quote.find({ isActive: true }).sort({
       createdAt: -1,
     });
-
     res.status(200).json(quotes);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch quotes" });
@@ -111,11 +110,23 @@ const getQuotesPaginated = async (req, res) => {
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit);
-
   res.json(quotes);
 };
 
+const getQuoteById = async (req, res) => {
+  try {
+    const quote = await Quote.findById(req.params.id);
 
+    if (!quote) {
+      return res.status(404).json({ message: "Quote not found" });
+    }
+
+    res.status(200).json(quote);
+  } catch (error) {
+    console.error("Get Quote Error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 module.exports = {
   getAllQuotes,
@@ -124,4 +135,5 @@ module.exports = {
   downloadQuote,
   shareQuote,
   getQuotesPaginated,
+  getQuoteById
 }
