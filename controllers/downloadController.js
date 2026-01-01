@@ -25,7 +25,7 @@ const axios =require("axios");
                 fill="white"
                 opacity="0.7"
                 font-family="Arial">
-                Shree_Status_Quotes.com
+                 shreestatusquotes.vercel.app
               </text>
             </svg>
           `),
