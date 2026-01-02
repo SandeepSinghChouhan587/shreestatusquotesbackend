@@ -5,13 +5,12 @@ const crypto = require("crypto");
 
 const getUploadUrl = async (req, res) => {
   try {
-    const { fileType } = req.body;
+    const { fileType, fileName } = req.body;
+    const fileKey = `uploads/${fileName}`;
 
     if (!fileType) {
       return res.status(400).json({ message: "File type required" });
     }
-
-    const fileKey = `uploads/${crypto.randomUUID()}.${fileType}`;
 
     const command = new PutObjectCommand({
       Bucket: process.env.AWS_BUCKET_NAME,
