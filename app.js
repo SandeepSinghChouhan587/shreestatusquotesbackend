@@ -36,6 +36,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/api/", apiLimiter);
+app.use("/",(req,res)=>{
+ res.send("Shree Status Quotes Backend is running");
+})
 
 app.use("/api/quotes", quoteRoutes);
 app.use("/api/admin", require("./routes/adminRoutes"));
